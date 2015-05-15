@@ -1,0 +1,5 @@
+.idea
+.tmp
+dist
+.bowerrc
+bower.json
