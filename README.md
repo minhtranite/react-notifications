@@ -1,5 +1,7 @@
 # React Notifications
 
+<img src="example/assets/images/screenshot.png" style="width: 100%;" />
+
 ## Installation
 
 ```
