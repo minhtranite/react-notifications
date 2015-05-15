@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Notification component for ReactJS",
   "main": "lib/Notifications.js",
   "scripts": {
@@ -10,9 +10,11 @@
     "build": "gulp build",
     "lib": "gulp lib"
   },
+  "peerDependencies": {
+    "react": "^0.13.x"
+  },
   "dependencies": {
-    "classnames": "^2.1.1",
-    "react": "^0.13.3"
+    "classnames": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^5.3.3",
