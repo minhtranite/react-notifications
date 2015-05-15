@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Notification component for ReactJS",
   "main": "lib/Notifications.js",
   "scripts": {
@@ -10,12 +10,6 @@
     "build": "gulp build",
     "lib": "gulp lib"
   },
-  "keywords": [
-    "react-component",
-    "react",
-    "component",
-    "notification"
-  ],
   "dependencies": {
     "classnames": "^2.1.1",
     "react": "^0.13.3"
@@ -60,5 +54,21 @@
     "style-loader": "^0.12.2",
     "vinyl-named": "^1.1.0",
     "webpack": "^1.9.5"
-  }
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "component",
+    "notification"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vn38minhtran/react-notifications.git"
+  },
+  "author": "Minh Tran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vn38minhtran/react-notifications/issues"
+  },
+  "homepage": "https://github.com/vn38minhtran/react-notifications"
 }
