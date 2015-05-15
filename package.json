@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Notification component for ReactJS",
   "main": "lib/Notifications.js",
   "scripts": {
@@ -35,6 +35,7 @@
     "file-loader": "^0.8.1",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
+    "gulp-babel": "^5.1.0",
     "gulp-csso": "^1.0.0",
     "gulp-imagemin": "^2.2.1",
     "gulp-karma": "0.0.4",

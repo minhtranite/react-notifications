@@ -2,11 +2,11 @@ var React = require('react');
 
 require('./bower_components/bootstrap-customize/css/bootstrap.css');
 require('./assets/styles/app.scss');
-require('../lib/notifications.scss');
+require('../src/notifications.scss');
 
 var Header = require('./components/Header');
 var Footer = require('./components/Footer');
-var Notifications = require('../lib/Notifications');
+var Notifications = require('../src/Notifications');
 
 var App = React.createClass({
   getInitialState: function () {
