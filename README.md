@@ -1,6 +1,6 @@
 # React Notifications
 
-[<img src="example/assets/images/screenshot.png" style="width: 100%;" />](http://vn38minhtran.github.io/react-notifications)
+[<img src="./example/assets/images/screenshot.png" style="width: 100%;" />](http://vn38minhtran.github.io/react-notifications)
 
 ## Installation
 
