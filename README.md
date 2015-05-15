@@ -9,7 +9,7 @@ npm install --save react-notifications
 ## Usage
 
 ```js
-var Notifications = require('../lib/Notifications');
+var Notifications = require('react-notifications');
 
 var notifications = [
   {
@@ -33,8 +33,8 @@ function handleRequestHide(notification){
 
 ## Props
 
-- notifications: []
-- onRequestHide: function(notification)
+- notifications: [] : Array of notification object.
+- onRequestHide: function(notification) : Callback function
 
 ## Notification object
 
