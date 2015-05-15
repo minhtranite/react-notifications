@@ -1,0 +1,63 @@
+{
+  "name": "react-notifications",
+  "version": "0.0.1",
+  "description": "Notification component for ReactJS",
+  "main": "lib/Notifications.js",
+  "scripts": {
+    "serve": "gulp serve",
+    "serve:dist": "gulp serve:dist",
+    "test": "gulp test",
+    "build": "gulp build",
+    "lib": "gulp lib"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "component",
+    "notification"
+  ],
+  "dependencies": {
+    "classnames": "^2.1.1",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.3.3",
+    "babel-eslint": "^3.1.1",
+    "babel-loader": "^5.0.0",
+    "browser-sync": "^2.7.1",
+    "connect-modrewrite": "^0.8.1",
+    "css-loader": "^0.12.0",
+    "del": "^1.1.1",
+    "eslint": "^0.21.0",
+    "eslint-loader": "^0.11.2",
+    "eslint-plugin-react": "^2.2.0",
+    "extract-text-webpack-plugin": "^0.8.0",
+    "file-loader": "^0.8.1",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.2.0",
+    "gulp-csso": "^1.0.0",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-karma": "0.0.4",
+    "gulp-minify-html": "^1.0.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "gulp-webpack": "^1.4.0",
+    "jasmine-core": "^2.3.4",
+    "json-loader": "^0.5.1",
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-webpack": "^1.5.1",
+    "less": "^2.5.0",
+    "less-loader": "^2.2.0",
+    "node-libs-browser": "^0.5.0",
+    "node-sass": "^2.1.1",
+    "opn": "^1.0.2",
+    "run-sequence": "^1.1.0",
+    "sass-loader": "^0.4.1",
+    "style-loader": "^0.12.2",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^1.9.5"
+  }
+}
