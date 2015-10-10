@@ -1,0 +1,11 @@
+{
+  "name": "bootstrap-customize",
+  "version": "3.3.5",
+  "description": "Twitter Bootstrap without Javascript, Glyphicons.",
+  "main": ["css/bootstrap.css"],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "config.json"
+  ]
+}

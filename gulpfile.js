@@ -1,191 +1,104 @@
 'use strict';
 
+var pkg = require('./package.json');
 var gulp = require('gulp');
-var gulpUtil = require('gulp-util');
 var del = require('del');
-var webpack = require('gulp-webpack');
-var named = require('vinyl-named');
-var minifyHtml = require('gulp-minify-html');
-var uglify = require('gulp-uglify');
-var autoprefixer = require('gulp-autoprefixer');
-var csso = require('gulp-csso');
-var imagemin = require('gulp-imagemin');
-var browserSync = require('browser-sync');
-var modRewrite = require('connect-modrewrite');
-var runSequence = require('run-sequence');
-var opn = require('opn');
-var karma = require('gulp-karma');
-var sass = require('gulp-sass');
+var eslint = require('gulp-eslint');
 var babel = require('gulp-babel');
-
-var isBuild = false;
-var isOpen = false;
-var autoprefixerBrowsers = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
+var sass = require('gulp-sass');
+var filter = require('gulp-filter');
+var autoprefixer = require('gulp-autoprefixer');
+var runSequence = require('run-sequence');
+var webpackStatsHelper = require('./example/helper/webpack-stats-helper');
+var path = require('path');
+var frep = require('gulp-frep');
+var minifyHtml = require('gulp-minify-html');
+var webpackStream = require('webpack-stream');
+var webpackConfig = require('./example/webpack.build.config');
+var webpack = require('webpack');
 
 gulp.task('clean', function () {
-  del.sync(['.tmp', 'dist']);
-});
-
-gulp.task('webpack', function () {
-  var webpackConfigs = require('./webpack.example.config.js');
-  webpackConfigs.quiet = !isBuild;
-  return gulp.src(['example/*.{js,jsx}'])
-    .pipe(named())
-    .pipe(webpack(webpackConfigs))
-    .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('webpack:watch', function () {
-  var webpackConfigs = require('./webpack.example.config.js');
-  webpackConfigs.watch = true;
-  return gulp.src(['example/*.{js,jsx}'])
-    .pipe(named())
-    .pipe(webpack(webpackConfigs, null, function (error, stats) {
-      if (error) {
-        gulpUtil.log(error.toString());
-      } else {
-        gulpUtil.log(stats.toString({
-          colors: gulpUtil.colors.supportsColor,
-          hash: false,
-          timings: false,
-          chunks: false,
-          chunkModules: false,
-          modules: false,
-          children: false,
-          version: true,
-          cached: false,
-          cachedAssets: false,
-          reasons: false,
-          source: false,
-          errorDetails: false
-        }));
-        if (!isOpen) {
-          opn('http://localhost:3000', null, function () {
-            isOpen = true;
-          });
-        }
-      }
-    }))
-    .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('html', ['webpack'], function () {
-  return gulp.src('example/*.html')
-    .pipe(minifyHtml({empty: true, cdata: true, conditionals: true}))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('scripts', function () {
-  return gulp.src('.tmp/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('styles', function () {
-  return gulp.src('.tmp/*.css')
-    .pipe(autoprefixer(autoprefixerBrowsers))
-    .pipe(csso())
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('images', function () {
-  return gulp.src('.tmp/*.{png,jpg,gif}')
-    .pipe(imagemin({
-      optimizationLevel: 3,
-      interlaced: true
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('fonts', function () {
-  return gulp.src('.tmp/*.{ttf,eot,svg,woff,woff2}')
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('copy', function () {
-  return gulp.src(['example/*.*', '!example/*.{html,js}'], {dot: true})
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('browserSync', function (callback) {
-  browserSync({
-    files: ['example/*.html', '.tmp/**/*'],
-    server: {
-      baseDir: ['.tmp', 'example'],
-      middleware: [
-        modRewrite([
-          '!\\.\\w+$ /index.html [L]'
-        ])
-      ]
-    },
-    port: 3000,
-    reloadOnRestart: false,
-    open: false
-  });
-  callback();
-});
-
-gulp.task('serve', function (callback) {
-  runSequence('clean', 'webpack', 'browserSync', 'webpack:watch', callback);
-});
-
-gulp.task('test', function () {
-  return gulp.src('test/spec/**/*.js')
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }));
-});
-
-gulp.task('build', function (callback) {
-  isBuild = true;
-  runSequence('clean', 'html', 'scripts', 'styles', 'images', 'fonts', 'copy', callback);
-});
-
-gulp.task('serve:dist', ['build'], function () {
-  browserSync({
-    server: {
-      baseDir: 'dist'
-    }
-  });
-});
-
-gulp.task('lib:clean', function () {
   del.sync(['lib']);
 });
 
-gulp.task('lib:sass', function () {
-  gulp.src('src/*.scss')
-    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-    .pipe(autoprefixer(autoprefixerBrowsers))
-    .pipe(gulp.dest('lib'));
+gulp.task('lint', function () {
+  return gulp
+    .src(['src/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
 });
 
-gulp.task('lib:babel', function () {
-  return gulp.src('src/*.{js,jsx}')
+
+gulp.task('babel', function () {
+  return gulp
+    .src(['src/**/*.js'])
     .pipe(babel())
     .pipe(gulp.dest('lib'));
 });
 
-gulp.task('lib:copy', function () {
-  return gulp.src(['src/**/*', '!src/*.{scss,js}'], {dot: true})
+gulp.task('sass', function () {
+  var cssFilter = filter('**/*.css');
+  return gulp
+    .src(['src/*.scss', '!src/_*.scss'])
+    .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+    .pipe(cssFilter)
+    .pipe(autoprefixer({
+      browsers: [
+        'ie >= 10',
+        'ie_mob >= 10',
+        'ff >= 30',
+        'chrome >= 34',
+        'safari >= 7',
+        'opera >= 23',
+        'ios >= 7',
+        'android >= 4.4',
+        'bb >= 10'
+      ]
+    }))
     .pipe(gulp.dest('lib'));
 });
 
-gulp.task('lib', function (callback) {
-  runSequence('lib:clean', 'lib:babel', 'lib:sass', 'lib:copy', callback);
+gulp.task('copy', function () {
+  return gulp
+    .src(['src/**/*', '!src/**/*.{scss,js}'])
+    .pipe(gulp.dest('lib'));
 });
 
-gulp.task('default', function () {
-  gulp.start('build');
+gulp.task('build:lib', function (callback) {
+  runSequence('clean', 'lint', 'babel', 'sass', 'copy', callback);
+});
+
+
+gulp.task('example:clean', function () {
+  del.sync(['example/dist']);
+});
+
+gulp.task('example:webpack', function () {
+  return gulp
+    .src(['example/app/app.js'])
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(gulp.dest('example/dist'));
+});
+
+gulp.task('example:html', function () {
+  var patterns = webpackStatsHelper.getReplacePatterns(path.join(__dirname, './example/dist/webpack.stats.json'));
+  return gulp.src(['example/app/*.html'])
+    .pipe(frep(patterns))
+    .pipe(minifyHtml())
+    .pipe(gulp.dest('example/dist'));
+});
+
+gulp.task('example:copy', function () {
+  return gulp
+    .src(['example/app/*', '!example/app/*.{html,js}'], {nodir: true})
+    .pipe(gulp.dest('example/dist'));
+});
+
+gulp.task('build:example', function (callback) {
+  runSequence('example:clean', 'example:webpack', 'example:html', 'example:copy', callback);
+});
+
+gulp.task('build', function (callback) {
+  runSequence('build:lib', 'build:example', callback);
 });

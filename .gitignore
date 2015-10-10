@@ -1,5 +1,4 @@
 .idea
-.tmp
-dist
-example/bower_components
 node_modules
+bower_components
+example/dist
