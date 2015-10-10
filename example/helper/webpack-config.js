@@ -31,7 +31,7 @@ module.exports = function (options) {
 
   var alias = {};
   alias[pkg.name + '$'] = path.join(__dirname, '../../src/index.js');
-  alias[pkg.name + '/lib'] = path.join(__dirname, '../../src');
+  alias[pkg.name + '/src'] = path.join(__dirname, '../../src');
 
 
   var scssIncludePaths = [

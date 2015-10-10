@@ -10,10 +10,26 @@ npm install --save react-notifications
 
 ## Usage
 
-```js
-var Notifications = require('react-notifications');
+### CSS
 
-var notifications = [
+#### Webpack:
+```js
+import 'react-notifications/lib/notifications.css';
+// or
+require('react-notifications/lib/notifications.css);
+```
+
+#### Other
+```html
+<link rel="stylesheet" type="text/css" href="path/to/notifications.css">
+```
+
+### JS
+
+```js
+import Notifications from 'react-notifications';
+
+let notifications = [
   {
     id: 1,
     title: 'Title',
@@ -26,9 +42,9 @@ var notifications = [
   }
 ];
 
-function handleRequestHide(notification){
-  console.log(notification)
-}
+let handleRequestHide = (notification) => {
+  notifications = notifications.filter(n => n.id !== notification.id);
+};
 
 <Notifications notifications={notifications} onRequestHide={handleRequestHide}/>
 ```
@@ -44,10 +60,12 @@ function handleRequestHide(notification){
 {
   id: [number],
   title: [string],
-  message: 'String',
+  message: 'string',
   timeOut: [milliseconds],
   onClick: [function]
 }
+
+// [] is optional.
 ```
 
 ## Example

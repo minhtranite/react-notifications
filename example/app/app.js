@@ -6,7 +6,7 @@ import Footer from './components/Footer.js';
 import Notifications from 'react-notifications';
 
 import './bower_components/bootstrap-customize/css/bootstrap.css';
-import 'react-notifications/lib/notifications.scss';
+import 'react-notifications/src/notifications.scss';
 import './assets/styles/app.scss';
 
 class App extends React.Component {
