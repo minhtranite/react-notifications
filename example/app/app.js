@@ -15,16 +15,14 @@ class App extends React.Component {
   };
 
   handleRequestHide = (notification) => {
-    let notifications = this.state.notifications.filter(function (n) {
-      return n.id !== notification.id;
-    });
+    let notifications = this.state.notifications.filter(n => n.id !== notification.id);
     this.setState({
       notifications: notifications
     });
   };
 
   createNotification = (type) => {
-    return function () {
+    return () => {
       let notifications = this.state.notifications;
       let id = new Date().getTime();
       let notification = {
@@ -33,7 +31,7 @@ class App extends React.Component {
         title: 'Title',
         message: 'message',
         timeOut: (Math.random() * 10000),
-        onClick: function () {
+        onClick: () => {
           console.log('On Click');
         }
       };
@@ -41,7 +39,7 @@ class App extends React.Component {
       this.setState({
         notifications: notifications
       });
-    }.bind(this);
+    };
   };
 
   render() {

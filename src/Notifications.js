@@ -1,27 +1,29 @@
-var React = require('react');
-var Notification = require('./Notification');
-var ReactCSSTransitionGroup = require('react/lib/ReactCSSTransitionGroup');
-var ClassNames = require('classnames');
+import React from 'react';
+import Notification from './Notification';
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import ClassNames from 'classnames';
 
-var Notifications = React.createClass({
-  propTypes: {
+class Notifications extends React.Component {
+  static propTypes = {
     notifications: React.PropTypes.array.isRequired,
     onRequestHide: React.PropTypes.func
-  },
-  getDefaultProps: function () {
-    return {
-      onRequestHide: function () {
+  };
+
+  static defaultProps = {
+    notifications: []
+  };
+
+  handleRequestHide = (notification) => {
+    return () => {
+      if (this.props.onRequestHide) {
+        this.props.onRequestHide(notification);
       }
     };
-  },
-  handleRequestHide: function (notification) {
-    return function () {
-      this.props.onRequestHide(notification);
-    }.bind(this);
-  },
-  render: function () {
-    var notifications = this.props.notifications.map(function (notification) {
-      var key = notification.id || new Date().getTime();
+  };
+
+  render() {
+    let notifications = this.props.notifications.map(notification => {
+      let key = notification.id || new Date().getTime();
       return (
         <Notification key={key} type={notification.type}
           title={notification.title} message={notification.message}
@@ -29,8 +31,9 @@ var Notifications = React.createClass({
           onClick={notification.onClick}
           onRequestHide={this.handleRequestHide(notification)}/>
       );
-    }.bind(this));
-    var className = ClassNames('notification-container', {
+    });
+    let className = ClassNames({
+      'notification-container': true,
       'notification-container-empty': this.props.notifications.length === 0
     });
     return (
@@ -42,6 +45,7 @@ var Notifications = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Notifications;
+export default Notifications;
+
