@@ -1,6 +1,6 @@
 # React Notifications
 
-[<img src="./example/assets/images/screenshot.png" style="width: 100%;" />](http://vn38minhtran.github.io/react-notifications)
+[<img src="./screenshot.png" style="width: 100%;" />](http://vn38minhtran.github.io/react-notifications)
 
 ## Installation
 
@@ -16,7 +16,7 @@ npm install --save react-notifications
 ```js
 import 'react-notifications/lib/notifications.css';
 // or
-require('react-notifications/lib/notifications.css);
+require('react-notifications/lib/notifications.css');
 ```
 
 #### Other
