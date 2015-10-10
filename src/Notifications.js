@@ -35,7 +35,8 @@ var Notifications = React.createClass({
     });
     return (
       <div className={className}>
-        <ReactCSSTransitionGroup transitionName='notification'>
+        <ReactCSSTransitionGroup transitionName='notification'
+          transitionEnterTimeout={400} transitionLeaveTimeout={400}>
           {notifications}
         </ReactCSSTransitionGroup>
       </div>
