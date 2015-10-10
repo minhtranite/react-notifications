@@ -16,15 +16,10 @@
   right: 0;
   z-index: 999999;
   width: 320px;
-  padding: 15px;
+  padding: 0 15px;
   max-height: calc(100% - 30px);
   overflow-x: hidden;
   overflow-y: auto;
-  transition: all 0.4s 0.4s;
-}
-
-.notification-container-empty {
-  padding: 0;
 }
 
 .notification {
@@ -40,9 +35,7 @@
   position: relative;
   opacity: 0.9;
   transition: all 0.4s;
-  & + .notification {
-    margin-top: 15px;
-  }
+  margin-top: 15px;
   .title {
     font-size: 1em;
     line-height: 1.2em;

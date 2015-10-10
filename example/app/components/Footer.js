@@ -1,9 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-require('../assets/styles/footer.scss');
-
-var Footer = React.createClass({
-  render: function () {
+class Footer extends React.Component {
+  render() {
     return (
       <footer className='layout-footer'>
         <div className='container'>
@@ -12,6 +10,6 @@ var Footer = React.createClass({
       </footer>
     );
   }
-});
+}
 
-module.exports = Footer;
+export default Footer;

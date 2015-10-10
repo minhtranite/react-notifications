@@ -13,16 +13,10 @@
   right: 0;
   z-index: 999999;
   width: 320px;
-  padding: 15px;
+  padding: 0 15px;
   max-height: calc(100% - 30px);
   overflow-x: hidden;
   overflow-y: auto;
-  -webkit-transition: all 0.4s 0.4s;
-          transition: all 0.4s 0.4s;
-}
-
-.notification-container-empty {
-  padding: 0;
 }
 
 .notification {
@@ -37,11 +31,7 @@
   line-height: 1.2em;
   position: relative;
   opacity: 0.9;
-  -webkit-transition: all 0.4s;
-          transition: all 0.4s;
-}
-
-.notification + .notification {
+  transition: all 0.4s;
   margin-top: 15px;
 }
 
