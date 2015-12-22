@@ -8,7 +8,8 @@
     "build": "NODE_ENV=production gulp build"
   },
   "peerDependencies": {
-    "react": "0.13 - 0.14"
+    "react": "0.13 - 0.14",
+    "react-addons-css-transition-group": "0.13 - 0.14"
   },
   "dependencies": {
     "classnames": "^2.1.1"
