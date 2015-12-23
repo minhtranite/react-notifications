@@ -1,81 +1,39 @@
 import 'babel-core/polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
-import Notifications from 'react-notifications';
+import {createHistory, useBasename} from 'history';
+import Router from 'react-router';
+import App from 'components/App.js';
+import {name} from '../../package.json';
 
-import './bower_components/bootstrap-customize/css/bootstrap.css';
+import 'assets/bower_components/bootstrap-customize/css/bootstrap.css';
 import 'react-notifications/src/notifications.scss';
-import './assets/styles/app.scss';
+import 'assets/styles/app.scss';
 
-class App extends React.Component {
-  state = {
-    notifications: []
-  };
+const routes = {
+  path: '/',
+  component: App,
+  indexRoute: {
+    component: require('./components/pages/HomePage')
+  },
+  childRoutes: [
+    require('./routes/Example1Route'),
+    require('./routes/Example2Route')
+  ]
+};
 
-  handleRequestHide = (notification) => {
-    let notifications = this.state.notifications.filter(n => n.id !== notification.id);
-    this.setState({
-      notifications: notifications
-    });
-  };
+const DEV = process && process.env && process.env.NODE_ENV === 'development';
+const history = useBasename(createHistory)({
+  basename: '/' + (DEV ? '' : name)
+});
 
-  createNotification = (type) => {
-    return () => {
-      let notifications = this.state.notifications;
-      let id = new Date().getTime();
-      let notification = {
-        id: id,
-        type: type,
-        title: 'Title',
-        message: 'message',
-        timeOut: (Math.random() * 10000),
-        onClick: () => {
-          console.log('On Click');
-        }
-      };
-      notifications.push(notification);
-      this.setState({
-        notifications: notifications
-      });
-    };
-  };
-
-  render() {
-    return (
-      <div className='layout-page'>
-        <Header/>
-        <main className='layout-main'>
-          <div className='container'>
-            <button className='btn btn-info'
-              onClick={this.createNotification('info')}>Info
-            </button>
-            <hr/>
-            <button className='btn btn-success'
-              onClick={this.createNotification('success')}>Success
-            </button>
-            <hr/>
-            <button className='btn btn-warning'
-              onClick={this.createNotification('warning')}>Warning
-            </button>
-            <hr/>
-            <button className='btn btn-danger'
-              onClick={this.createNotification('error')}>Error
-            </button>
-          </div>
-        </main>
-        <Footer/>
-        <Notifications notifications={this.state.notifications}
-          onRequestHide={this.handleRequestHide}/>
-      </div>
-    );
-  }
-}
-
-function run() {
-  ReactDOM.render(<App />, document.getElementById('app'));
-}
+const run = () => {
+  ReactDOM.render(
+    <Router routes={routes} history={history}/>,
+    document.getElementById('app')
+  );
+};
 
 if (window.addEventListener) {
   window.addEventListener('DOMContentLoaded', run);

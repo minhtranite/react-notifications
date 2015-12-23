@@ -1,15 +1,9 @@
-var fs = require('fs');
+var fs = require('fs-extra');
 var path = require('path');
 
-function getExtension(file) {
-  file = file || '';
-  var arr = file.split('.');
-  return arr.slice(-1)[0];
-}
-
 var webpackStatsHelper = {
-  saveToFile: function (fileName, options) {
-    fileName = fileName || './webpack.stats.json';
+  StatsToFilePlugin: function (file, options) {
+    file = file || './webpack.stats.json';
     options = options || {};
     return function () {
       this.plugin('done', function (stats) {
@@ -32,33 +26,37 @@ var webpackStatsHelper = {
             defaultOptions[option] = options[option];
           }
         }
-        fs.writeFileSync(fileName, JSON.stringify(stats.toJson(defaultOptions)));
+        fs.ensureFileSync(file);
+        fs.writeFileSync(file, JSON.stringify(stats.toJson(defaultOptions)));
       });
     }
   },
-  getProperties: function (property, fileName) {
-    fileName = fileName || './webpack.stats.json';
-    var stats = require(fileName);
-    return stats[property];
+  getProperty: function (name, file) {
+    file = file || './webpack.stats.json';
+    if (!fs.existsSync(file)) {
+      return undefined;
+    }
+    var stats = require(file);
+    return stats[name];
   },
-  getReplacePatterns: function (fileName) {
+  getReplacePatterns: function (file) {
     var patterns = [];
-    var assetsByChunkName = this.getProperties('assetsByChunkName', fileName) || {};
+    var assetsByChunkName = this.getProperty('assetsByChunkName', file) || {};
     for (var chunkName in assetsByChunkName) {
       if (assetsByChunkName.hasOwnProperty(chunkName)) {
         var assets = assetsByChunkName[chunkName];
         if (typeof assets === 'string') {
-          var ext = getExtension(assets);
+          var ext = path.extname(assets);
           var pattern = {
-            pattern: chunkName + '.' + ext,
+            pattern: chunkName + ext,
             replacement: assets
           };
           patterns.push(pattern);
         } else {
           assets.forEach(function (asset) {
-            var ext = getExtension(asset);
+            var ext = path.extname(asset);
             var pattern = {
-              pattern: chunkName + '.' + ext,
+              pattern: chunkName + ext,
               replacement: asset
             };
             patterns.push(pattern);

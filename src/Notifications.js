@@ -6,11 +6,15 @@ import ClassNames from 'classnames';
 class Notifications extends React.Component {
   static propTypes = {
     notifications: React.PropTypes.array.isRequired,
-    onRequestHide: React.PropTypes.func
+    onRequestHide: React.PropTypes.func,
+    enterTimeout: React.PropTypes.number,
+    leaveTimeout: React.PropTypes.number
   };
 
   static defaultProps = {
-    notifications: []
+    notifications: [],
+    enterTimeout: 400,
+    leaveTimeout: 400
   };
 
   handleRequestHide = (notification) => {
@@ -22,16 +26,7 @@ class Notifications extends React.Component {
   };
 
   render() {
-    let notifications = this.props.notifications.map(notification => {
-      let key = notification.id || new Date().getTime();
-      return (
-        <Notification key={key} type={notification.type}
-          title={notification.title} message={notification.message}
-          timeOut={notification.timeOut}
-          onClick={notification.onClick}
-          onRequestHide={this.handleRequestHide(notification)}/>
-      );
-    });
+    let {notifications, enterTimeout, leaveTimeout} = this.props;
     let className = ClassNames({
       'notification-container': true,
       'notification-container-empty': this.props.notifications.length === 0
@@ -39,8 +34,20 @@ class Notifications extends React.Component {
     return (
       <div className={className}>
         <ReactCSSTransitionGroup transitionName='notification'
-          transitionEnterTimeout={400} transitionLeaveTimeout={400}>
-          {notifications}
+          transitionEnterTimeout={enterTimeout}
+          transitionLeaveTimeout={leaveTimeout}>
+          {notifications.map(notification => {
+            let key = notification.id || new Date().getTime();
+            return (
+              <Notification key={key}
+                type={notification.type}
+                title={notification.title}
+                message={notification.message}
+                timeOut={notification.timeOut}
+                onClick={notification.onClick}
+                onRequestHide={this.handleRequestHide(notification)}/>
+            );
+          })}
         </ReactCSSTransitionGroup>
       </div>
     );
