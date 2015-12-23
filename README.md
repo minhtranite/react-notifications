@@ -51,8 +51,12 @@ let handleRequestHide = (notification) => {
 
 ## Props
 
-- notifications: [] : Array of notification object.
-- onRequestHide: function(notification) : Callback function
+| Name | Type | Default |
+|------|------|---------|
+| notifications | array | [] |
+| enterTimeout | number | 400 |
+| leaveTimeout | number | 400 |
+| onRequestHide | function |  |
 
 ## Notification object
 

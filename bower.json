@@ -1,8 +1,8 @@
 {
   "name": "react-notifications",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Notification component for ReactJS",
-  "main": "lib/Notifications.js",
+  "main": ["dist/notifications.css", "dist/react-notifications.js"],
   "keywords": [
     "react-component",
     "react",
