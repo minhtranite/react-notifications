@@ -44,6 +44,12 @@ module.exports = {
       commonjs: 'react',
       commonjs2: 'react',
       amd: 'react'
+    },
+    'react-addons-css-transition-group': {
+      root: 'ReactCSSTransitionGroup',
+      commonjs: 'react-addons-css-transition-group',
+      commonjs2: 'react-addons-css-transition-group',
+      amd: 'react-addons-css-transition-group'
     }
   },
   module: {
