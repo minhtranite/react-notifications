@@ -1,6 +1,6 @@
 import React from 'react';
 import Notification from './Notification';
-import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ClassNames from 'classnames';
 
 class Notifications extends React.Component {
