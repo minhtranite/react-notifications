@@ -1,38 +1,27 @@
 import React from 'react';
-import Notifications from 'react-notifications';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 import './notifications.scss';
 
 class Example1 extends React.Component {
-  state = {
-    notifications: []
-  };
-
-  handleRequestHide = (notification) => {
-    let notifications = this.state.notifications.filter(n => n.id !== notification.id);
-    this.setState({
-      notifications: notifications
-    });
-  };
-
   createNotification = (type) => {
     return () => {
-      let notifications = this.state.notifications;
-      let id = new Date().getTime();
-      let notification = {
-        id: id,
-        type: type,
-        title: 'Title',
-        message: 'message',
-        timeOut: (Math.random() * 10000),
-        onClick: () => {
-          console.log('On Click');
-        }
-      };
-      notifications.push(notification);
-      this.setState({
-        notifications: notifications
-      });
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Title here');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error message', 'Click me!', 5000, () => {
+            alert('callback');
+          });
+          break;
+      }
     };
   };
 
@@ -54,10 +43,8 @@ class Example1 extends React.Component {
         <button className='btn btn-danger'
           onClick={this.createNotification('error')}>Error
         </button>
-        <Notifications notifications={this.state.notifications}
-          enterTimeout={800}
-          leaveTimeout={500}
-          onRequestHide={this.handleRequestHide}/>
+
+        <NotificationContainer enterTimeout={800} leaveTimeout={500}/>
       </div>
     );
   }

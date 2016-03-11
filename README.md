@@ -10,13 +10,15 @@ npm install --save react-notifications
 
 ## Usage
 
+### Note
+
+**Use only one 'NotificationContainer' component in the app.**
+
 ### CSS
 
 #### Webpack:
 ```js
 import 'react-notifications/lib/notifications.css';
-// or
-require('react-notifications/lib/notifications.css');
 ```
 
 #### Other
@@ -27,50 +29,72 @@ require('react-notifications/lib/notifications.css');
 ### JS
 
 ```js
-import Notifications from 'react-notifications';
+import React from 'react';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-let notifications = [
-  {
-    id: 1,
-    title: 'Title',
-    message: 'Message'
-  },
-  {
-    id: 2,
-    title: 'Title',
-    message: 'Message'
+class Example extends React.Component {
+  createNotification = (type) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message', 'Title here');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+          break;
+        case 'error':
+          NotificationManager.error('Error message', 'Click me!', 5000, () => {
+            alert('callback');
+          });
+          break;
+      }
+    };
+  };
+
+  render() {
+    return (
+      <div>
+        <button className='btn btn-info'
+          onClick={this.createNotification('info')}>Info
+        </button>
+        <hr/>
+        <button className='btn btn-success'
+          onClick={this.createNotification('success')}>Success
+        </button>
+        <hr/>
+        <button className='btn btn-warning'
+          onClick={this.createNotification('warning')}>Warning
+        </button>
+        <hr/>
+        <button className='btn btn-danger'
+          onClick={this.createNotification('error')}>Error
+        </button>
+
+        <NotificationContainer/>
+      </div>
+    );
   }
-];
-
-let handleRequestHide = (notification) => {
-  notifications = notifications.filter(n => n.id !== notification.id);
-};
-
-<Notifications notifications={notifications} onRequestHide={handleRequestHide}/>
-```
-
-## Props
-
-| Name | Type | Default |
-|------|------|---------|
-| notifications | array | [] |
-| enterTimeout | number | 400 |
-| leaveTimeout | number | 400 |
-| onRequestHide | function |  |
-
-## Notification object
-
-```js
-{
-  id: [number],
-  title: [string],
-  message: 'string',
-  timeOut: [milliseconds],
-  onClick: [function]
 }
 
-// [] is optional.
+export default Example;
 ```
+
+## NotificationContainer Props
+
+| Name | Type | Default | Required |
+|------|------|---------|----------|
+| enterTimeout | number | 400 | false |
+| leaveTimeout | number | 400 | false |
+
+## NotificationManager API
+
+- NotificationManager.info(message, title, timeOut, callback);
+- NotificationManager.success(message, title, timeOut, callback);
+- NotificationManager.warning(message, title, timeOut, callback);
+- NotificationManager.error(message, title, timeOut, callback);
 
 ## Example
 View [demo](http://vn38minhtran.github.io/react-notifications) or example folder.

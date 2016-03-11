@@ -18,8 +18,7 @@ const routes = {
     component: require('components/pages/Home')
   },
   childRoutes: [
-    require('routes/Example1'),
-    require('routes/Example2')
+    require('routes/Example1')
   ]
 };
 

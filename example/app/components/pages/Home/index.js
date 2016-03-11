@@ -8,7 +8,7 @@ class HomePage extends React.Component {
       <Document title='Home | React notifications' className='page-home'>
         <div>
           <div className='page-header'>
-            <h1>Home</h1>
+            <h1>Simple sample</h1>
           </div>
           <Example/>
         </div>
