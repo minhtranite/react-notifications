@@ -19,7 +19,5 @@
     "tests"
   ],
   "dependencies": {},
-  "devDependencies": {
-    "bootstrap-customize": "~3.3.4"
-  }
+  "devDependencies": {}
 }

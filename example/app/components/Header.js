@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const logo = require('../assets/images/logo.svg');
+import logo from 'assets/images/logo.svg';
 
 class Header extends React.Component {
   render() {

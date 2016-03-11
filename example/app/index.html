@@ -1,26 +1,11 @@
 <!doctype html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <title>React notifications</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
-    <!-- @if NODE_ENV='production' -->
-    <link rel="stylesheet"
-      type="text/css"
-      href="/<!-- @echo npm_package_name -->/app.css">
-    <!-- @endif -->
-
-    <!-- @if NODE_ENV!='production' -->
-    <script src="/app.js"></script>
-    <!-- @endif -->
-    <!-- @if NODE_ENV='production' -->
-    <script src="/<!-- @echo npm_package_name -->/app.js"></script>
-    <!-- @endif -->
   </head>
-
   <body>
     <div id="app">
       <div class="pre-render">
@@ -28,5 +13,4 @@
       </div>
     </div>
   </body>
-
 </html>
