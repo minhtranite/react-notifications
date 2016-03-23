@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Notification';
-  src: url("fonts/notification.eot?s3g3t9");
-  src: url("fonts/notification.eot?#iefixs3g3t9") format("embedded-opentype"), url("fonts/notification.woff?s3g3t9") format("woff"), url("fonts/notification.ttf?s3g3t9") format("truetype"), url("fonts/notification.svg?s3g3t9#notification") format("svg");
+  src: url("./fonts/notification.eot?s3g3t9");
+  src: url("./fonts/notification.eot?#iefixs3g3t9") format("embedded-opentype"), url("./fonts/notification.woff?s3g3t9") format("woff"), url("./fonts/notification.ttf?s3g3t9") format("truetype"), url("./fonts/notification.svg?s3g3t9#notification") format("svg");
   font-weight: normal;
   font-style: normal;
 }
