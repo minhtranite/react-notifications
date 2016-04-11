@@ -38,7 +38,8 @@ class NotificationContainer extends React.Component {
   render() {
     let {notifications} = this.state;
     return (
-      <Notifications {...this.props} notifications={notifications}
+      <Notifications {...this.props}
+        notifications={notifications}
         onRequestHide={this.handleRequestHide}/>
     );
   }

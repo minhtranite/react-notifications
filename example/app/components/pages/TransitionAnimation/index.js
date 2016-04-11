@@ -2,7 +2,9 @@ import React from 'react';
 import Document from 'components/common/Document';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-class HomePage extends React.Component {
+import './notifications.scss';
+
+class TransitionAnimationPage extends React.Component {
   createNotification = (type) => {
     return () => {
       switch (type) {
@@ -26,10 +28,11 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <Document title="Home | React notifications" className="page-home">
+      <Document title="Transition & Animation | React notifications"
+        className="page-transition-animation">
         <div>
           <div className="page-header">
-            <h1>Simple sample</h1>
+            <h1>Transition & animation</h1>
           </div>
           <button className="btn btn-info"
             onClick={this.createNotification('info')}>Info
@@ -47,11 +50,12 @@ class HomePage extends React.Component {
             onClick={this.createNotification('error')}>Error
           </button>
 
-          <NotificationContainer/>
+          <NotificationContainer enterTimeout={800} leaveTimeout={500}/>
         </div>
       </Document>
     );
   }
 }
 
-export default HomePage;
+export default TransitionAnimationPage;
+

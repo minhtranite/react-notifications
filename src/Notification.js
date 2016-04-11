@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 class Notification extends React.Component {
   static propTypes = {
@@ -18,8 +19,9 @@ class Notification extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.props.timeOut !== 0) {
-      this.timer = setTimeout(this.requestHide, this.props.timeOut);
+    let {timeOut} = this.props;
+    if (timeOut !== 0) {
+      this.timer = setTimeout(this.requestHide, timeOut);
     }
   };
 
@@ -30,28 +32,29 @@ class Notification extends React.Component {
   };
 
   handleClick = () => {
-    if (this.props.onClick) {
-      this.props.onClick();
+    let {onClick} = this.props;
+    if (onClick) {
+      onClick();
     }
     this.requestHide();
   };
 
   requestHide = () => {
-    if (this.props.onRequestHide) {
-      this.props.onRequestHide();
+    let {onRequestHide} = this.props;
+    if (onRequestHide) {
+      onRequestHide();
     }
   };
 
   render() {
-    let className = 'notification notification-' + this.props.type;
-    let title = this.props.title
-      ? (<h4 className='title'>{this.props.title}</h4>)
-      : null;
+    let {type, title, message} = this.props;
+    let className = classnames(['notification', `notification-${type}`]);
+    title = title ? (<h4 className="title">{title}</h4>) : null;
     return (
       <div className={className} onClick={this.handleClick}>
-        <div className='notification-message'>
+        <div className="notification-message">
           {title}
-          <div className='message'>{this.props.message}</div>
+          <div className="message">{message}</div>
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import Notification from './Notification';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ClassNames from 'classnames';
+import classnames from 'classnames';
 
 class Notifications extends React.Component {
   static propTypes = {
@@ -19,21 +19,21 @@ class Notifications extends React.Component {
 
   handleRequestHide = (notification) => {
     return () => {
-      if (this.props.onRequestHide) {
-        this.props.onRequestHide(notification);
+      let {onRequestHide} = this.props;
+      if (onRequestHide) {
+        onRequestHide(notification);
       }
     };
   };
 
   render() {
     let {notifications, enterTimeout, leaveTimeout} = this.props;
-    let className = ClassNames({
-      'notification-container': true,
-      'notification-container-empty': this.props.notifications.length === 0
+    let className = classnames('notification-container', {
+      'notification-container-empty': notifications.length === 0
     });
     return (
       <div className={className}>
-        <ReactCSSTransitionGroup transitionName='notification'
+        <ReactCSSTransitionGroup transitionName="notification"
           transitionEnterTimeout={enterTimeout}
           transitionLeaveTimeout={leaveTimeout}>
           {notifications.map(notification => {
