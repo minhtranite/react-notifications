@@ -96,11 +96,13 @@ export default Example;
 - NotificationManager.warning(message, title, timeOut, callback, priority);
 - NotificationManager.error(message, title, timeOut, callback, priority);
 
-| message | string | The message string
-| title | string | The title string
-| timeOut | integer | The popup timeout in milliseconds
-| callback | function | A function that gets fired when the popup is clicked
-| priority | boolean | If true, the message gets inserted at the top
+| Name | Type | Description |
+|------|------|-------------|
+| message | string | The message string |
+| title | string | The title string |
+| timeOut | integer | The popup timeout in milliseconds |
+| callback | function | A function that gets fired when the popup is clicked |
+| priority | boolean | If true, the message gets inserted at the top |
 
 ## Example
 View [demo](http://vn38minhtran.github.io/react-notifications) or example folder.
