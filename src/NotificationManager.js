@@ -28,47 +28,54 @@ class NotificationManager extends EventEmitter {
       message: null,
       timeOut: 5000
     };
-    this.listNotify.push(Object.assign(defaultNotify, notify));
+    if (notify.priority)
+      this.listNotify.unshift(Object.assign(defaultNotify, notify));
+    else
+      this.listNotify.push(Object.assign(defaultNotify, notify));
     this.emitChange();
   }
 
-  info(message, title, timeOut, onClick) {
+  info(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.INFO,
       message: message,
       title: title,
       timeOut: timeOut,
-      onClick: onClick
+      onClick: onClick,
+      priority: priority
     });
   }
 
-  success(message, title, timeOut, onClick) {
+  success(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.SUCCESS,
       message: message,
       title: title,
       timeOut: timeOut,
-      onClick: onClick
+      onClick: onClick,
+      priority: priority
     });
   }
 
-  warning(message, title, timeOut, onClick) {
+  warning(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.WARNING,
       message: message,
       title: title,
       timeOut: timeOut,
-      onClick: onClick
+      onClick: onClick,
+      priority: priority
     });
   }
 
-  error(message, title, timeOut, onClick) {
+  error(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.ERROR,
       message: message,
       title: title,
       timeOut: timeOut,
-      onClick: onClick
+      onClick: onClick,
+      priority: priority
     });
   }
 
@@ -91,4 +98,3 @@ class NotificationManager extends EventEmitter {
 }
 
 export default new NotificationManager();
-

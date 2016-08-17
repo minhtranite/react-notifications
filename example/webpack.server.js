@@ -7,7 +7,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
-import https from 'https'
+import https from 'https';
 import opn from 'opn';
 import httpProxy from 'http-proxy';
 
