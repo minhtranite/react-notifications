@@ -1,6 +1,6 @@
 # React Notifications
 
-[<img src="./screenshot.png" style="width: 100%;" />](http://vn38minhtran.github.io/react-notifications)
+[<img src="./screenshot.png" style="width: 100%;" />](http://minhtranite.github.io/react-notifications)
 
 ## Installation
 
@@ -105,4 +105,4 @@ export default Example;
 | priority | boolean | If true, the message gets inserted at the top |
 
 ## Example
-View [demo](http://vn38minhtran.github.io/react-notifications) or example folder.
+View [demo](http://minhtranite.github.io/react-notifications) or example folder.
