@@ -1,4 +1,5 @@
 import {EventEmitter} from 'events';
+import uuid from 'uuid';
 
 const Constants = {
   CHANGE: 'change',
@@ -6,11 +7,6 @@ const Constants = {
   SUCCESS: 'success',
   WARNING: 'warning',
   ERROR: 'error'
-};
-
-const getTime = () => {
-  let d = new Date();
-  return d.getTime();
 };
 
 class NotificationManager extends EventEmitter {
@@ -22,7 +18,7 @@ class NotificationManager extends EventEmitter {
   create(notify) {
     notify.type = notify.type || Constants.INFO;
     let defaultNotify = {
-      id: getTime(),
+      id: uuid(),
       type: 'info',
       title: null,
       message: null,
