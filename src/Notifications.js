@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Notification from './Notification';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 class Notifications extends React.Component {
   static propTypes = {
-    notifications: React.PropTypes.array.isRequired,
-    onRequestHide: React.PropTypes.func,
-    enterTimeout: React.PropTypes.number,
-    leaveTimeout: React.PropTypes.number
+    notifications: PropTypes.array.isRequired,
+    onRequestHide: PropTypes.func,
+    enterTimeout: PropTypes.number,
+    leaveTimeout: PropTypes.number
   };
 
   static defaultProps = {
@@ -55,4 +56,3 @@ class Notifications extends React.Component {
 }
 
 export default Notifications;
-

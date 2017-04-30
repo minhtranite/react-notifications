@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Document extends React.Component {
   static propTypes = {
-    title: React.PropTypes.string,
-    className: React.PropTypes.string,
-    children: React.PropTypes.any.isRequired
+    title: PropTypes.string,
+    className: PropTypes.string,
+    children: PropTypes.any.isRequired
   };
 
   state = {
