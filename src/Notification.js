@@ -53,7 +53,7 @@ class Notification extends React.Component {
     title = title ? (<h4 className="title">{title}</h4>) : null;
     return (
       <div className={className} onClick={this.handleClick}>
-        <div className="notification-message">
+        <div className="notification-message" role="alert">
           {title}
           <div className="message">{message}</div>
         </div>
