@@ -5,8 +5,8 @@ import classnames from 'classnames';
 class Notification extends React.Component {
   static propTypes = {
     type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    message: PropTypes.string.isRequired,
+    title: PropTypes.node,
+    message: PropTypes.node.isRequired,
     timeOut: PropTypes.number,
     onClick: PropTypes.func,
     onRequestHide: PropTypes.func
@@ -63,3 +63,5 @@ class Notification extends React.Component {
 }
 
 export default Notification;
+
+
