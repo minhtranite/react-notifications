@@ -9,7 +9,8 @@ const webpackConfig = {
   output: {
     filename: `${pkg.name}.js`,
     library: capitalizeFirstLetter(camelCase(pkg.name)),
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   externals: {
     react: {
