@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {
@@ -69,5 +69,15 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "webpack-stream": "^3.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minhtranite/react-notifications.git"
+  },
+  "author": "Minh Tran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minhtranite/react-notifications/issues"
+  },
+  "homepage": "https://github.com/minhtranite/react-notifications"
 }
