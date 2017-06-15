@@ -10,7 +10,7 @@ import pkg from '../../../package.json';
 const DEV = process && process.env && process.env.NODE_ENV === 'development';
 
 const App = () => (
-  <Router baseName={`/${DEV ? '' : pkg.name}`}>
+  <Router basename={`/${DEV ? '' : pkg.name}`}>
     <div className="page">
       <Header/>
       <main className="page__wrapper">
