@@ -24,11 +24,11 @@ const webpackConfig = {
       commonjs2: 'react-dom',
       amd: 'react-dom'
     },
-    'react-addons-css-transition-group': {
-      root: 'ReactCSSTransitionGroup',
-      commonjs: 'react-addons-css-transition-group',
-      commonjs2: 'react-addons-css-transition-group',
-      amd: 'react-addons-css-transition-group'
+    'react-transition-group': {
+      root: ['React', 'addons', 'CSSTransitionGroup'],
+      commonjs: 'react-transition-group',
+      commonjs2: 'react-transition-group',
+      amd: 'react-transition-group'
     },
     'prop-types': {
       root: 'PropTypes',
