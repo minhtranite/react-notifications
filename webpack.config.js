@@ -9,8 +9,7 @@ const webpackConfig = {
   output: {
     filename: `${pkg.name}.js`,
     library: capitalizeFirstLetter(camelCase(pkg.name)),
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    libraryTarget: 'umd'
   },
   externals: {
     react: {
@@ -18,12 +17,6 @@ const webpackConfig = {
       commonjs: 'react',
       commonjs2: 'react',
       amd: 'react'
-    },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'react-dom'
     },
     'react-transition-group': {
       root: ['ReactTransitionGroup'],
