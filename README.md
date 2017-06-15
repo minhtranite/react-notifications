@@ -82,6 +82,20 @@ class Example extends React.Component {
 export default Example;
 ```
 
+### UMD
+
+```html
+<link rel="stylesheet" type="text/css" href="path/to/react-notifications/dist/react-notifications.css">
+<script src="path/to/react-notifications/dist/react-notifications.js"></script>
+```
+
+```js
+const NotificationContainer = window.ReactNotifications.NotificationContainer;
+const NotificationManager = window.ReactNotifications.NotificationManager;
+```
+
+Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
+
 ## NotificationContainer Props
 
 | Name | Type | Default | Required |
