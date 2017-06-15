@@ -28,7 +28,7 @@ class NotificationContainer extends React.Component {
 
   handleStoreChange = (notifications) => {
     this.setState({
-      notifications: notifications
+      notifications
     });
   };
 
@@ -37,11 +37,15 @@ class NotificationContainer extends React.Component {
   };
 
   render() {
-    let {notifications} = this.state;
+    const { notifications } = this.state;
+    const { enterTimeout, leaveTimeout } = this.props;
     return (
-      <Notifications {...this.props}
+      <Notifications
+        enterTimeout={enterTimeout}
+        leaveTimeout={leaveTimeout}
         notifications={notifications}
-        onRequestHide={this.handleRequestHide}/>
+        onRequestHide={this.handleRequestHide}
+      />
     );
   }
 }

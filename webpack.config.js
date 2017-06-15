@@ -1,15 +1,13 @@
 import webpack from 'webpack';
 import path from 'path';
-import pkg from './package.json';
 import camelCase from 'camelcase';
+import pkg from './package.json';
 
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
+const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
 const webpackConfig = {
   output: {
-    filename: pkg.name + '.js',
+    filename: `${pkg.name}.js`,
     library: capitalizeFirstLetter(camelCase(pkg.name)),
     libraryTarget: 'umd'
   },
@@ -20,25 +18,50 @@ const webpackConfig = {
       commonjs2: 'react',
       amd: 'react'
     },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom'
+    },
     'react-addons-css-transition-group': {
       root: 'ReactCSSTransitionGroup',
       commonjs: 'react-addons-css-transition-group',
       commonjs2: 'react-addons-css-transition-group',
       amd: 'react-addons-css-transition-group'
+    },
+    'prop-types': {
+      root: 'PropTypes',
+      commonjs: 'prop-types',
+      commonjs2: 'prop-types',
+      amd: 'prop-types'
     }
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            configFile: path.join(__dirname, '.eslintrc'),
+            failOnError: true,
+            emitError: true
+          }
+        },
+        enforce: 'pre'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       }
     ]
   },
   resolve: {
-    modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['', '.jsx', '.js']
+    modules: ['node_modules'],
+    extensions: ['.jsx', '.js']
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -54,8 +77,7 @@ const webpackConfig = {
       output: {
         comments: false
       }
-    }),
-    new webpack.optimize.DedupePlugin()
+    })
   ]
 };
 

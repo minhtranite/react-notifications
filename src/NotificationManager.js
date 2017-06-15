@@ -1,5 +1,13 @@
-import {EventEmitter} from 'events';
-import uuid from 'uuid';
+import { EventEmitter } from 'events';
+
+const createUUID = () => {
+  const pattern = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+  return pattern.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : ((r & 0x3) | 0x8);
+    return v.toString(16);
+  });
+};
 
 const Constants = {
   CHANGE: 'change',
@@ -16,62 +24,62 @@ class NotificationManager extends EventEmitter {
   }
 
   create(notify) {
-    notify.type = notify.type || Constants.INFO;
-    let defaultNotify = {
-      id: uuid(),
+    const defaultNotify = {
+      id: createUUID(),
       type: 'info',
       title: null,
       message: null,
       timeOut: 5000
     };
-    if (notify.priority)
+    if (notify.priority) {
       this.listNotify.unshift(Object.assign(defaultNotify, notify));
-    else
+    } else {
       this.listNotify.push(Object.assign(defaultNotify, notify));
+    }
     this.emitChange();
   }
 
   info(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.INFO,
-      message: message,
-      title: title,
-      timeOut: timeOut,
-      onClick: onClick,
-      priority: priority
+      message,
+      title,
+      timeOut,
+      onClick,
+      priority
     });
   }
 
   success(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.SUCCESS,
-      message: message,
-      title: title,
-      timeOut: timeOut,
-      onClick: onClick,
-      priority: priority
+      message,
+      title,
+      timeOut,
+      onClick,
+      priority
     });
   }
 
   warning(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.WARNING,
-      message: message,
-      title: title,
-      timeOut: timeOut,
-      onClick: onClick,
-      priority: priority
+      message,
+      title,
+      timeOut,
+      onClick,
+      priority
     });
   }
 
   error(message, title, timeOut, onClick, priority) {
     this.create({
       type: Constants.ERROR,
-      message: message,
-      title: title,
-      timeOut: timeOut,
-      onClick: onClick,
-      priority: priority
+      message,
+      title,
+      timeOut,
+      onClick,
+      priority
     });
   }
 
