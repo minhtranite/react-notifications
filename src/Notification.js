@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 class Notification extends React.Component {
   static propTypes = {
-    type: React.PropTypes.oneOf(['info', 'success', 'warning', 'error']),
-    title: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-    message: React.PropTypes.string.isRequired,
-    timeOut: React.PropTypes.number,
-    onClick: React.PropTypes.func,
-    onRequestHide: React.PropTypes.func
+    type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    message: PropTypes.string.isRequired,
+    timeOut: PropTypes.number,
+    onClick: PropTypes.func,
+    onRequestHide: PropTypes.func
   };
 
   static defaultProps = {
@@ -62,5 +63,3 @@ class Notification extends React.Component {
 }
 
 export default Notification;
-
-
