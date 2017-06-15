@@ -18,14 +18,8 @@ const webpackConfig = {
       commonjs2: 'react',
       amd: 'react'
     },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'react-dom'
-    },
     'react-transition-group': {
-      root: ['React', 'addons', 'CSSTransitionGroup'],
+      root: ['ReactTransitionGroup'],
       commonjs: 'react-transition-group',
       commonjs2: 'react-transition-group',
       amd: 'react-transition-group'
