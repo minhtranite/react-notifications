@@ -5,9 +5,12 @@ import Footer from 'components/Footer';
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
 import TransitionAnimation from 'pages/TransitionAnimation';
+import pkg from '../../../package.json';
+
+const DEV = process && process.env && process.env.NODE_ENV === 'development';
 
 const App = () => (
-  <Router>
+  <Router baseName={`/${DEV ? '' : pkg.name}`}>
     <div className="page">
       <Header/>
       <main className="page__wrapper">
