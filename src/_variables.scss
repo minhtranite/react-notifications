@@ -1,0 +1,49 @@
+$react-notifications-font-base-path: './fonts' !default;
+
+$react-notifications-transition-time: 0.4s !default;
+
+$react-notifications-container-top: 0 !default;
+$react-notifications-container-right: 0 !default;
+$react-notifications-container-z-index: 999999 !default;
+$react-notifications-container-width: 320px !default;
+$react-notifications-container-top-padding: 0px !default;
+$react-notifications-container-max-height: calc(100% - 30px) !default;
+$react-notifications-container-right-padding: 15px !default;
+
+$react-notifications-border-radius: 2px !default;
+$react-notifications-padding-top: 15px !default;
+$react-notifications-padding-right: 15px !default;
+$react-notifications-padding-bottom: 15px !default;
+$react-notifications-padding-left: 58px !default;
+$react-notifications-color: #fff !default;
+$react-notifications-background-color: #ccc !default;
+$react-notifications-box-shadow: 0 0 12px #999 !default;
+$react-notifications-cursor: pointer !default;
+$react-notifications-font-size: 1em !default;
+$react-notifications-line-height: 1.2em !default;
+$react-notifications-opacity: 0.9 !default;
+$react-notifications-margin-top: 15px !default;
+
+$react-notifications-icon-top: 50% !default;
+$react-notifications-icon-left: 15px !default;
+$react-notifications-icon-margin-top: -14px !default;
+$react-notifications-icon-width: 28px !default;
+$react-notifications-icon-height: 28px !default;
+$react-notifications-icon-font-size: 28px !default;
+$react-notifications-icon-line-height: 28px !default;
+
+$react-notifications-hover-opacity: 1 !default;
+
+$react-notifications-title-font-size: 1em !default;
+$react-notifications-title-line-height: 1.2em !default;
+$react-notifications-title-font-weight: bold !default;
+$react-notifications-title-margin: 0 0 5px 0 !default;
+
+$react-notifications-info-background-color: #2f96b4 !default;
+$react-notifications-info-content: "\f05a" !default;
+$react-notifications-success-background-color: #51a351 !default;
+$react-notifications-success-content: "\f058" !default;
+$react-notifications-warning-background-color: #f89406 !default;
+$react-notifications-warning-content: "\f06a" !default;
+$react-notifications-error-background-color: #bd362f !default;
+$react-notifications-error-content: "\f057" !default;
