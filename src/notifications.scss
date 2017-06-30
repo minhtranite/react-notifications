@@ -1,10 +1,12 @@
+@import 'variables';
+
 @font-face {
   font-family: 'Notification';
-  src: url('./fonts/notification.eot?s3g3t9');
-  src: url('./fonts/notification.eot?#iefixs3g3t9') format('embedded-opentype'),
-  url('./fonts/notification.woff?s3g3t9') format('woff'),
-  url('./fonts/notification.ttf?s3g3t9') format('truetype'),
-  url('./fonts/notification.svg?s3g3t9#notification') format('svg');
+  src: url('#{$react-notifications-font-base-path}/notification.eot?s3g3t9');
+  src: url('#{$react-notifications-font-base-path}/notification.eot?#iefixs3g3t9') format('embedded-opentype'),
+  url('#{$react-notifications-font-base-path}/notification.woff?s3g3t9') format('woff'),
+  url('#{$react-notifications-font-base-path}/notification.ttf?s3g3t9') format('truetype'),
+  url('#{$react-notifications-font-base-path}/notification.svg?s3g3t9#notification') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -12,37 +14,37 @@
 .notification-container {
   box-sizing: border-box;
   position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 999999;
-  width: 320px;
-  padding: 0 15px;
-  max-height: calc(100% - 30px);
+  top: $react-notifications-container-top;
+  right: $react-notifications-container-right;
+  z-index: $react-notifications-container-z-index;
+  width: $react-notifications-container-width;
+  padding: $react-notifications-container-top-padding $react-notifications-container-right-padding;
+  max-height: $react-notifications-container-max-height;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
 .notification {
   box-sizing: border-box;
-  padding: 15px 15px 15px 58px;
-  border-radius: 2px;
-  color: #fff;
-  background-color: #ccc;
-  box-shadow: 0 0 12px #999;
-  cursor: pointer;
-  font-size: 1em;
-  line-height: 1.2em;
+  padding: $react-notifications-padding-top $react-notifications-padding-right $react-notifications-padding-bottom $react-notifications-padding-left;
+  border-radius: $react-notifications-border-radius;
+  color: $react-notifications-color;
+  background-color: $react-notifications-background-color;
+  box-shadow: $react-notifications-box-shadow;
+  cursor: $react-notifications-cursor;
+  font-size: $react-notifications-font-size;
+  line-height: $react-notifications-line-height;
   position: relative;
-  opacity: 0.9;
-  margin-top: 15px;
+  opacity: $react-notifications-opacity;
+  margin-top: $react-notifications-margin-top;
   .title {
-    font-size: 1em;
-    line-height: 1.2em;
-    font-weight: bold;
-    margin: 0 0 5px 0;
+    font-size: $react-notifications-title-font-size;
+    line-height: $react-notifications-title-line-height;
+    font-weight: $react-notifications-title-font-weight;
+    margin: $react-notifications-title-margin;
   }
   &:hover, &:focus {
-    opacity: 1;
+    opacity: $react-notifications-hover-opacity;
   }
 }
 
@@ -54,7 +56,7 @@
 .notification-enter.notification-enter-active {
   visibility: visible;
   transform: translate3d(0, 0, 0);
-  transition: all 0.4s;
+  transition: all $react-notifications-transition-time;
 }
 
 .notification-leave {
@@ -65,49 +67,49 @@
 .notification-leave.notification-leave-active {
   visibility: hidden;
   transform: translate3d(100%, 0, 0);
-  transition: all 0.4s;
+  transition: all $react-notifications-transition-time;
 }
 
 .notification {
   &:before {
     position: absolute;
-    top: 50%;
-    left: 15px;
-    margin-top: -14px;
+    top: $react-notifications-icon-top;
+    left: $react-notifications-icon-left;
+    margin-top: $react-notifications-icon-margin-top;
     display: block;
     font-family: 'Notification';
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
+    width: $react-notifications-icon-width;
+    height: $react-notifications-icon-height;
+    font-size: $react-notifications-icon-font-size;
     text-align: center;
-    line-height: 28px;
+    line-height: $react-notifications-icon-line-height;
   }
 }
 
 .notification-info {
-  background-color: #2f96b4;
+  background-color: $react-notifications-info-background-color;
   &:before {
-    content: "\f05a";
+    content: $react-notifications-info-content;
   }
 }
 
 .notification-success {
-  background-color: #51a351;
+  background-color: $react-notifications-success-background-color;
   &:before {
-    content: "\f058";
+    content: $react-notifications-success-content;
   }
 }
 
 .notification-warning {
-  background-color: #f89406;
+  background-color: $react-notifications-warning-background-color;
   &:before {
-    content: "\f06a";
+    content: $react-notifications-warning-content;
   }
 }
 
 .notification-error {
-  background-color: #bd362f;
+  background-color: $react-notifications-error-background-color;
   &:before {
-    content: "\f057";
+    content: $react-notifications-error-content;
   }
 }
