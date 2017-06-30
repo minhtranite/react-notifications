@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: 'Notification';
   src: url("./fonts/notification.eot?s3g3t9");
@@ -13,7 +14,7 @@
   right: 0;
   z-index: 999999;
   width: 320px;
-  padding: 0 15px;
+  padding: 0px 15px;
   max-height: calc(100% - 30px);
   overflow-x: hidden;
   overflow-y: auto;
@@ -86,7 +87,7 @@
 }
 
 .notification-info:before {
-  content: "\f05a";
+  content: "";
 }
 
 .notification-success {
@@ -94,7 +95,7 @@
 }
 
 .notification-success:before {
-  content: "\f058";
+  content: "";
 }
 
 .notification-warning {
@@ -102,7 +103,7 @@
 }
 
 .notification-warning:before {
-  content: "\f06a";
+  content: "";
 }
 
 .notification-error {
@@ -110,5 +111,5 @@
 }
 
 .notification-error:before {
-  content: "\f057";
+  content: "";
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {
