@@ -6,12 +6,14 @@ import Notifications from './Notifications';
 class NotificationContainer extends React.Component {
   static propTypes = {
     enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+    leaveTimeout: PropTypes.number,
+    notificationComponent: PropTypes.func
   };
 
   static defaultProps = {
     enterTimeout: 400,
-    leaveTimeout: 400
+    leaveTimeout: 400,
+    notificationComponent: null
   };
 
   state = {
@@ -45,6 +47,7 @@ class NotificationContainer extends React.Component {
         leaveTimeout={leaveTimeout}
         notifications={notifications}
         onRequestHide={this.handleRequestHide}
+        notificationComponent={this.props.notificationComponent}
       />
     );
   }
