@@ -9,7 +9,8 @@ class Notifications extends React.Component {
     notifications: PropTypes.array.isRequired,
     onRequestHide: PropTypes.func,
     enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+    leaveTimeout: PropTypes.number,
+    notificationComponent: PropTypes.func
   };
 
   static defaultProps = {
@@ -17,7 +18,8 @@ class Notifications extends React.Component {
     onRequestHide: () => {
     },
     enterTimeout: 400,
-    leaveTimeout: 400
+    leaveTimeout: 400,
+    notificationComponent: null
   };
 
   handleRequestHide = notification => () => {
@@ -32,6 +34,7 @@ class Notifications extends React.Component {
     const className = classnames('notification-container', {
       'notification-container-empty': notifications.length === 0
     });
+    const NotificationComponent = this.props.notificationComponent || Notification;
     return (
       <div className={className}>
         <CSSTransitionGroup
@@ -42,7 +45,7 @@ class Notifications extends React.Component {
           {notifications.map((notification) => {
             const key = notification.id || new Date().getTime();
             return (
-              <Notification
+              <NotificationComponent
                 key={key}
                 type={notification.type}
                 title={notification.title}
