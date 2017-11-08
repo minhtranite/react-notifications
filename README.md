@@ -96,6 +96,70 @@ const NotificationManager = window.ReactNotifications.NotificationManager;
 
 Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
 
+### Custom notification component
+
+Use `notificationComponent` property to add user notification component.
+
+``` javascript
+<NotificationContainer notificationComponent={MyNotification} />
+```
+
+#### Example:
+
+You can use this with `react-intl`:
+
+``` javascript
+// IntlNotification.js
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import Notification from 'react-notifications/lib/Notification'
+import {injectIntl, intlShape} from 'react-intl'
+import classnames from 'classnames'
+
+
+class IntlNotification extends Notification {
+    static propTypes = {
+        ...Notification.propTypes,
+        message: PropTypes.object.isRequired,
+        intl: intlShape.isRequired,
+    }
+
+    render() {
+        const {type} = this.props
+        let {title} = this.props
+        const className = classnames(['notification', `notification-${type}`])
+        const {formatMessage} = this.props.intl
+        title = title ? (<h4 className="title">{title}</h4>) : null
+        let message = this.props.message
+        message = formatMessage(message)
+        return (
+            <div className={className} onClick={this.handleClick}>
+                <div className="notification-message" role="alert">
+                    {title}
+                    <div className="message">{message}</div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default injectIntl(IntlNotification)
+
+```
+
+``` javascript
+<NotificationContainer notificationComponent={IntlNotification} />
+```
+
+And now you can send this message via notification manager instead of FormattedMessage component:
+
+```
+const msg = {id: 'my-string', defaultMessage: 'My string'}
+
+NotificationManager.info(msg, null, 3000)
+```
+
 ## NotificationContainer Props
 
 | Name | Type | Default | Required |
