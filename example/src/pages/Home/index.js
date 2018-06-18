@@ -24,6 +24,10 @@ class HomePage extends React.Component {
     }
   };
 
+  handleClearNotifications = () => {
+    NotificationManager.clear();
+  };
+
   render() {
     return (
       <Document title="Home | React notifications" className="page-home">
@@ -45,6 +49,10 @@ class HomePage extends React.Component {
           <hr/>
           <button className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
+          </button>
+          <hr/>
+          <button className="btn btn-default" onClick={this.handleClearNotifications}>
+            Clear
           </button>
 
           <NotificationContainer/>
