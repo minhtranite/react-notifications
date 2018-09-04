@@ -1,5 +1,5 @@
 {
-  "name": "react-notifications",
+  "name": "react-small-alert",
   "version": "1.4.3",
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
