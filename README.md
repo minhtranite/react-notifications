@@ -107,10 +107,11 @@ Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
 
 ## NotificationManager API
 
-- NotificationManager.info(message, title, timeOut, callback, priority);
-- NotificationManager.success(message, title, timeOut, callback, priority);
-- NotificationManager.warning(message, title, timeOut, callback, priority);
-- NotificationManager.error(message, title, timeOut, callback, priority);
+- NotificationManager.info(message, title, timeOut, callback, priority)
+- NotificationManager.success(message, title, timeOut, callback, priority)
+- NotificationManager.warning(message, title, timeOut, callback, priority)
+- NotificationManager.error(message, title, timeOut, callback, priority)
+- NotificationManager.clear()
 
 | Name | Type | Description |
 |------|------|-------------|
