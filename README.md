@@ -1,6 +1,8 @@
-# React Notifications
+# React Small Alert
 
 [<img src="./screenshot.png" style="width: 100%;" />](http://minhtranite.github.io/react-notifications)
+
+fork of https://github.com/minhtranite/react-notifications
 
 ## Installation
 
