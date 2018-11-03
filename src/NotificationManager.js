@@ -20,6 +20,7 @@ const Constants = {
 class NotificationManager extends EventEmitter {
   constructor() {
     super();
+    this.limit = 0;
     this.listNotify = [];
   }
 
@@ -33,8 +34,16 @@ class NotificationManager extends EventEmitter {
     };
     if (notify.priority) {
       this.listNotify.unshift(Object.assign(defaultNotify, notify));
+
+      if (this.limit && this.listNotify.length > this.limit) {
+        this.listNotify.pop();
+      }
     } else {
       this.listNotify.push(Object.assign(defaultNotify, notify));
+
+      if (this.limit && this.listNotify.length > this.limit) {
+        this.listNotify.shift();
+      }
     }
     this.emitChange();
   }

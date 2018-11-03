@@ -6,12 +6,14 @@ import Notifications from './Notifications';
 class NotificationContainer extends React.Component {
   static propTypes = {
     enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+    leaveTimeout: PropTypes.number,
+    limit: PropTypes.number
   };
 
   static defaultProps = {
     enterTimeout: 400,
-    leaveTimeout: 400
+    leaveTimeout: 400,
+    limit: 0
   };
 
   state = {
@@ -19,6 +21,7 @@ class NotificationContainer extends React.Component {
   };
 
   componentWillMount = () => {
+    NotificationManager.limit = this.props.limit;
     NotificationManager.addChangeListener(this.handleStoreChange);
   };
 
