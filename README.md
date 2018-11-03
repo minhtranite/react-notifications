@@ -102,6 +102,7 @@ Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
 |------|------|---------|----------|
 | enterTimeout | number | 400 | false |
 | leaveTimeout | number | 400 | false |
+| limit | number | 0 | false |
 
 ## NotificationManager API
 
