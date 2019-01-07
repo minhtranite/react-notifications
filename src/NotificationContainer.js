@@ -18,7 +18,7 @@ class NotificationContainer extends React.Component {
     notifications: []
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     NotificationManager.addChangeListener(this.handleStoreChange);
   };
 
