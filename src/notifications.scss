@@ -59,12 +59,12 @@
   transition: all $react-notifications-transition-time;
 }
 
-.notification-leave {
+.notification-exit {
   visibility: visible;
   transform: translate3d(0, 0, 0);
 }
 
-.notification-leave.notification-leave-active {
+.notification-exit.notification-exit-active {
   visibility: hidden;
   transform: translate3d(100%, 0, 0);
   transition: all $react-notifications-transition-time;
