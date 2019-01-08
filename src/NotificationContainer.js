@@ -6,19 +6,19 @@ import Notifications from './Notifications';
 class NotificationContainer extends React.Component {
   static propTypes = {
     enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+    exitTimeout: PropTypes.number
   };
 
   static defaultProps = {
     enterTimeout: 400,
-    leaveTimeout: 400
+    exitTimeout: 400
   };
 
   state = {
     notifications: []
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     NotificationManager.addChangeListener(this.handleStoreChange);
   };
 
@@ -38,11 +38,11 @@ class NotificationContainer extends React.Component {
 
   render() {
     const { notifications } = this.state;
-    const { enterTimeout, leaveTimeout } = this.props;
+    const { enterTimeout, exitTimeout } = this.props;
     return (
       <Notifications
         enterTimeout={enterTimeout}
-        leaveTimeout={leaveTimeout}
+        exitTimeout={exitTimeout}
         notifications={notifications}
         onRequestHide={this.handleRequestHide}
       />

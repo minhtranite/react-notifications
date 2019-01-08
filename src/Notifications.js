@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import Notification from './Notification';
 
@@ -9,7 +9,7 @@ class Notifications extends React.Component {
     notifications: PropTypes.array.isRequired,
     onRequestHide: PropTypes.func,
     enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+    exitTimeout: PropTypes.number
   };
 
   static defaultProps = {
@@ -17,7 +17,7 @@ class Notifications extends React.Component {
     onRequestHide: () => {
     },
     enterTimeout: 400,
-    leaveTimeout: 400
+    exitTimeout: 400
   };
 
   handleRequestHide = notification => () => {
@@ -28,32 +28,33 @@ class Notifications extends React.Component {
   };
 
   render() {
-    const { notifications, enterTimeout, leaveTimeout } = this.props;
+    const { notifications, enterTimeout, exitTimeout } = this.props;
     const className = classnames('notification-container', {
       'notification-container-empty': notifications.length === 0
     });
     return (
       <div className={className}>
-        <CSSTransitionGroup
-          transitionName="notification"
-          transitionEnterTimeout={enterTimeout}
-          transitionLeaveTimeout={leaveTimeout}
-        >
+        <TransitionGroup>
           {notifications.map((notification) => {
             const key = notification.id || new Date().getTime();
             return (
-              <Notification
+              <CSSTransition
                 key={key}
-                type={notification.type}
-                title={notification.title}
-                message={notification.message}
-                timeOut={notification.timeOut}
-                onClick={notification.onClick}
-                onRequestHide={this.handleRequestHide(notification)}
-              />
+                classNames="notification"
+                timeout={{ enter: enterTimeout, exit: exitTimeout }}
+              >
+                <Notification
+                  type={notification.type}
+                  title={notification.title}
+                  message={notification.message}
+                  timeOut={notification.timeOut}
+                  onClick={notification.onClick}
+                  onRequestHide={this.handleRequestHide(notification)}
+                />
+              </CSSTransition>
             );
           })}
-        </CSSTransitionGroup>
+        </TransitionGroup>
       </div>
     );
   }

@@ -23,7 +23,7 @@ const sassLoader = {
   }
 };
 
-const hmr = HOT ? ['webpack-hot-middleware/client?reload=true'] : [];
+const hmr = HOT ? ['webpack-hot-middleware/client?reload=true', 'react-hot-loader/patch'] : [];
 
 const webpackConfig = {
   entry: {
@@ -61,7 +61,7 @@ const webpackConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader', 'babel-loader']
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
