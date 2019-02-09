@@ -14,7 +14,9 @@ const Constants = {
   INFO: 'info',
   SUCCESS: 'success',
   WARNING: 'warning',
-  ERROR: 'error'
+  ERROR: 'error',
+  REMOVEALL: 'removeAll',
+  REMOVE_BY_ID: 'removeById'
 };
 
 class NotificationManager extends EventEmitter {
@@ -24,8 +26,9 @@ class NotificationManager extends EventEmitter {
   }
 
   create(notify) {
+    const id = createUUID();
     const defaultNotify = {
-      id: createUUID(),
+      id,
       type: 'info',
       title: null,
       message: null,
@@ -37,10 +40,12 @@ class NotificationManager extends EventEmitter {
       this.listNotify.push(Object.assign(defaultNotify, notify));
     }
     this.emitChange();
+
+    return id;
   }
 
   info(message, title, timeOut, onClick, priority) {
-    this.create({
+    return this.create({
       type: Constants.INFO,
       message,
       title,
@@ -51,7 +56,7 @@ class NotificationManager extends EventEmitter {
   }
 
   success(message, title, timeOut, onClick, priority) {
-    this.create({
+    return this.create({
       type: Constants.SUCCESS,
       message,
       title,
@@ -62,7 +67,7 @@ class NotificationManager extends EventEmitter {
   }
 
   warning(message, title, timeOut, onClick, priority) {
-    this.create({
+    return this.create({
       type: Constants.WARNING,
       message,
       title,
@@ -73,7 +78,7 @@ class NotificationManager extends EventEmitter {
   }
 
   error(message, title, timeOut, onClick, priority) {
-    this.create({
+    return this.create({
       type: Constants.ERROR,
       message,
       title,
@@ -85,6 +90,18 @@ class NotificationManager extends EventEmitter {
 
   remove(notification) {
     this.listNotify = this.listNotify.filter(n => notification.id !== n.id);
+    this.emitChange();
+  }
+
+  removeById(id) {
+    if (id) {
+      this.listNotify = this.listNotify.filter(n => id !== n.id);
+      this.emitChange();
+    }
+  }
+
+  removeAll() {
+    this.listNotify = [];
     this.emitChange();
   }
 
