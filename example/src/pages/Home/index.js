@@ -29,7 +29,7 @@ class HomePage extends React.Component {
         });
         break;
       case 'removeById':
-        NotificationManager.removeById(this.notification);
+        NotificationManager.removeById(this.notificationID);
         break;
       case 'removeAll':
         NotificationManager.removeAll();
