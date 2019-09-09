@@ -18,7 +18,7 @@ class NotificationContainer extends React.Component {
     notifications: []
   };
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     NotificationManager.addChangeListener(this.handleStoreChange);
   };
 
