@@ -13,7 +13,7 @@ class Document extends React.Component {
     oldClassName: document.body.className,
   };
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     if (this.props.title) {
       document.title = this.props.title;
     }
