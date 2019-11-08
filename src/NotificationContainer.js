@@ -1,53 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import NotificationManager from './NotificationManager';
 import Notifications from './Notifications';
 
-class NotificationContainer extends React.Component {
-  static propTypes = {
-    enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number
+const NotificationContainer = ({
+  enterTimeout = 400,
+  leaveTimeout = 400
+}) => {
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    NotificationManager.addChangeListener(handleStoreChange);
+
+    NotificationManager.removeChangeListener(handleStoreChange);
+  });
+
+  const handleStoreChange = newNotifications => {
+    setNotifications(newNotifications)
   };
 
-  static defaultProps = {
-    enterTimeout: 400,
-    leaveTimeout: 400
-  };
-
-  state = {
-    notifications: []
-  };
-
-  componentWillMount = () => {
-    NotificationManager.addChangeListener(this.handleStoreChange);
-  };
-
-  componentWillUnmount = () => {
-    NotificationManager.removeChangeListener(this.handleStoreChange);
-  };
-
-  handleStoreChange = (notifications) => {
-    this.setState({
-      notifications
-    });
-  };
-
-  handleRequestHide = (notification) => {
+  const handleRequestHide = (notification) => {
     NotificationManager.remove(notification);
   };
 
-  render() {
-    const { notifications } = this.state;
-    const { enterTimeout, leaveTimeout } = this.props;
-    return (
-      <Notifications
-        enterTimeout={enterTimeout}
-        leaveTimeout={leaveTimeout}
-        notifications={notifications}
-        onRequestHide={this.handleRequestHide}
-      />
-    );
-  }
+  return (
+    <Notifications
+      enterTimeout={enterTimeout}
+      leaveTimeout={leaveTimeout}
+      notifications={notifications}
+      onRequestHide={handleRequestHide}
+    />
+  );
 }
+
+NotificationContainer.propTypes = {
+  enterTimeout: PropTypes.number,
+  leaveTimeout: PropTypes.number
+};
 
 export default NotificationContainer;
